@@ -1,0 +1,15 @@
+{
+  "app": {
+    "name": "PermitMatch"
+  },
+  "nav": {
+    "profile": "Profile",
+    "jobs": "Saved Jobs",
+    "logout": "Logout",
+    "login": "login"
+  },
+  "language": {
+    "english": "English",
+    "chinese": "中文"
+  }
+}

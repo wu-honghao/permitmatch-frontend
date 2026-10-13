@@ -1,0 +1,15 @@
+{
+  "app": {
+    "name": "PermitMatch"
+  },
+  "nav": {
+    "profile": "求职档案",
+    "jobs": "已保存岗位",
+    "logout": "退出登录",
+    "login": "登陆"
+  },
+  "language": {
+    "english": "English",
+    "chinese": "中文"
+  }
+}
