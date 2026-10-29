@@ -1,0 +1,40 @@
+.JobDetailAnalyses .eyebrow{
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #1677ff;
+}
+
+.JobDetailAnalyses .smallhelp{
+    font-size: 12px;
+    color: #7c879b;
+}
+
+.JobDetailAnalyses .skill-hero .score{ 
+    font-size: 52px;
+    margin: 12px 0 8px;
+}
+
+.JobDetailAnalyses .score{ 
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ant-color-primary);
+    margin: 8px 0 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+.JobDetailAnalyses .score-unit{
+    font-size: 19px;
+    color: rgba(0, 0, 0, .45);
+    font-weight: 400;
+}
+
+.JobDetailAnalyses .coverage-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 20px;
+    padding-top: 20px;
+}

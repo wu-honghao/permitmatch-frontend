@@ -57,7 +57,7 @@ function JobLogin(){
         
         <button onClick={submit} disabled={loading === 'loading'}>Login</button>
 
-        { loading === 'error' && <p style={{ color: 'red' }}>login email or password is error</p>}
+        { loading === 'error' && <p style={{ color: 'red' }}>login email or password is error</p> }
     </div>
 }
 

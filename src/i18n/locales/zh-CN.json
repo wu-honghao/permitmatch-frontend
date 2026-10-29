@@ -2,14 +2,155 @@
   "app": {
     "name": "PermitMatch"
   },
+
   "nav": {
-    "profile": "求职档案",
     "jobs": "已保存岗位",
+    "dashboard": "仪表盘",
+    "myprofile": "求职档案",
+    "myanalyses": "分析历史",
+    "myjobs": "我的岗位",
     "logout": "退出登录",
     "login": "登陆"
   },
+
   "language": {
     "english": "English",
     "chinese": "中文"
+  },
+
+  "common": {
+    "submit": "保存",
+    "delete.success": "删除成功",
+    "delete.fail": "删除失败",
+    "loading.fail": "加载失败",
+    "data.empty": "暂无数据",
+    "analyses.success": "分析已完成并保存；已更新最新分析",
+    "analyses.fail": "分析失败"
+  },
+
+  "profilePage": {
+    "needsPermit" : "是否需要工作许可",
+    "targetRole": "目标职位",
+    "educationLevel": "学历等级",
+    "yearsExperience": "工作经验年限",
+    "skills": "当前技能",
+    "preferredLocation": "期望地点"
+  },
+
+  "profilePageForm": {
+    "needsPermit.yes" : "需要",
+    "needsPermit.no" : "不需要",
+
+    "educationLevel.high_school" : "高中",
+    "educationLevel.diploma" : "大专",
+    "educationLevel.bachelor" : "本科",
+    "educationLevel.master" : "研究生",
+    "educationLevel.phd" : "博士生",
+
+    "update.success": "个人资料更新成功！",
+    "update.fail": "更新失败，请重试。"
+  },
+
+  "jobs": {
+    "myjobsText": "我的岗位",
+    "myjobsDescription": "找到感兴趣的岗位，看看你的技能与它有多接近。",
+    "importJob": "导入岗位",
+    "searchInputPlacehold": "搜索职位，公司，地点",
+
+    "table.col1": "职位 / 公司",
+    "table.col2": "地点",
+    "table.col3": "技能匹配",
+    "table.col4": "状态",
+    "table.col5": "操作",
+
+    "table.button1": "查看岗位",
+    "table.button2": "编辑岗位",
+    "table.button3": "删除岗位",
+    "table.button3.description": "是否删除 ",
+    "table.button3.yes": "是",
+    "table.button3.no": "否",
+
+    "analyses.ok": "已分析",
+    "analyses.fail": "暂无分析"
+  },
+
+  "jobDetail": {
+    "backToJobs": "返回我的岗位",
+    "editJob": "编辑岗位",
+    "startAnalysis": "开始技能分析",
+    "analysisDescription": "使用你的求职档案，分析这份岗位的技能匹配。",
+
+    "jobInfo": "岗位信息",
+    "minAnnualSalary": "最低基本年薪",
+    "workHoursAndDuration": "合同月数",
+    "yearsExperience": "经验年限",
+    "educationRequirement": "学历要求",
+    "required": "必备",
+    "preferred": "加分",
+    "needsReview": "待审核",
+    "rawDescription": "岗位原文",
+
+    "permitInfo": "工作许可信息",
+    "employerPermitSupport": "雇主是否支持 Employment Permit",
+    "permitSupportHint": "可在编辑岗位中，依据招聘信息或雇主沟通结果手动更新。",
+
+    "latestAnalysis": "最近一次分析",
+    "skillMatch": "技能匹配",
+    "jobVersion": "使用 Job 版本",
+    "analysisHistory": "该岗位的分析历史",
+    "viewSnapshotAnalysis": "查看快照分析",
+    "allAnalysisHistory": "全部分析历史",
+
+    "analysisDateAndSnapshot": "分析日期 / 岗位快照",
+    "skillScore": "技能分数",
+    "viewFullResult": "查看完整结果",
+    "currentJob": "当前 Job"
+  },
+
+  "jobRequirements": {
+    "title": "技能要求",
+    "required": "必备技能",
+    "preferred": "加分技能",
+    "review": "待人工确认",
+    "all": "全部满足",
+    "any": "满足任意一项",
+    "empty": "暂无技能要求",
+    "needsReview": "需要人工复核"
+  },
+
+  "jobDetailAnalyses": {
+    "skillMatch": "技能匹配",
+    "backToHistory": "返回分析历史",
+    "scoreDescription": "基于已确认的必备与加分技能要求计算。",
+    "scoreDisclaimer": "匹配分数不代表录用概率，也不证明实际熟练度。",
+
+    "unavailable": "暂无评分",
+
+    "requiredCoverage": "必备技能覆盖",
+    "preferredCoverage": "加分技能覆盖",
+    "matchedSkills": "已匹配技能",
+    "missingSkills": "缺失技能",
+    "requiredSkills": "必备技能",
+    "preferredSkills": "加分技能",
+    "skillsNeedsReview": "需要人工复核的技能要求",
+    "noSkillsNeedsReview": "暂无待复核的技能要求",
+
+    "scoreDetails": "评分公式与要求组明细",
+    "scoreFormula": "技能分 = 必备覆盖率 × 80 + 加分覆盖率 × 20，最后四舍五入。",
+    "scoreRules": "AND 拆成独立技能计分，OR 作为一个备选要求；重复要求去重。80/20 为初始权重，不宣称最优。",
+
+    "snapshotDetails": "当时的 Job / Profile 快照与岗位原文",
+    "historyDisclaimer": "历史记录只读。修改 Job 或 Profile 不会更新这份结果；再次分析会创建新记录。"
+  },
+
+  "Analyses": {
+    "title": "分析历史",
+    "description": "回顾每一次匹配结果。之后修改岗位或档案，不会改变这里的历史。",
+    "searchPlaceholder": "搜索快照中的职位或公司",
+    "analysisDateAndSnapshot": "分析日期 / 岗位快照",
+    "skillScore": "技能分数",
+    "viewFullResult": "查看完整结果",
+    "currentJob": "当前 Job",
+    "requiredAndPreferred": "必备 + 加分"
   }
 }

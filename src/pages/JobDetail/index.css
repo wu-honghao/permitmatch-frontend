@@ -1,0 +1,32 @@
+.job-detail h4{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.job-detail_basic{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.job-detail .history-score {
+    font-size: 16px;
+    color: #1677ff;
+    font-variant-numeric: tabular-nums;
+}
+.job-detail .quote{
+
+}
+
+.job-detail .cell-sub {
+    display: block;
+    font-size: 11px;
+    color: #8a94a6;
+    margin-top: 3px;
+    line-height: 1.5;
+}
+
+.job-detail .sub {
+    color: #64748b;
+}

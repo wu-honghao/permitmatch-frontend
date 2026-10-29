@@ -17,7 +17,14 @@ type HeadersOption = {
 type headers = {
   authorization?: string
 }
-export const postAPI = async (option: GetAPI)=>{
+
+type ApiOptionType = {
+  url: string
+  data?: unknown
+  headersOption?: HeadersOption
+}
+
+export const postAPI = async (option: ApiOptionType)=>{
   const token = localStorage.getItem(USERTOKEN)
   const headers: headers = {}
 
@@ -41,12 +48,7 @@ export const postAPI = async (option: GetAPI)=>{
   return await res.json()
 }
 
-type GetAPI = {
-  url: string
-  data?: unknown
-  headersOption?: HeadersOption
-}
-export const getAPI = async (option: GetAPI)=>{
+export const getAPI = async (option: ApiOptionType)=>{
   const token = localStorage.getItem(USERTOKEN)
   const headers: headers = {}
 
@@ -60,11 +62,58 @@ export const getAPI = async (option: GetAPI)=>{
           ...headers
       },
       method: "GET",
-    })
+  })
 
   if(!res.ok){
     throw new Error(res.statusText)
   }
   
   return await res.json()
+}
+
+export const putAPI = async (option: ApiOptionType)=>{
+  const token = localStorage.getItem(USERTOKEN)
+  const headers: headers = {}
+
+  if(option.headersOption?.isAuthorization){
+    headers.authorization = 'Bearer ' + token
+  }
+
+  const res = await fetch(BASEAPIURL + option.url ,{ 
+      headers: {
+          "Content-Type": "application/json",
+          ...headers
+      },
+      method: "PUT",
+      body: JSON.stringify(option.data)
+    })
+
+  if(!res.ok){
+    throw new Error(res.statusText)
+  }
+    
+  return await res.json()
+}
+
+export const deleteAPI = async (option: ApiOptionType)=>{
+  const token = localStorage.getItem(USERTOKEN)
+  const headers: headers = {}
+
+  if(option.headersOption?.isAuthorization){
+    headers.authorization = 'Bearer ' + token
+  }
+
+  const res = await fetch(BASEAPIURL + option.url ,{ 
+      headers: {
+          "Content-Type": "application/json",
+          ...headers
+      },
+      method: "Delete",
+    })
+
+  if(!res.ok){
+    throw new Error(res.statusText)
+  }
+
+  return res
 }

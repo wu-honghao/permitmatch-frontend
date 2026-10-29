@@ -2,14 +2,155 @@
   "app": {
     "name": "PermitMatch"
   },
+
   "nav": {
-    "profile": "Profile",
     "jobs": "Saved Jobs",
-    "logout": "Logout",
-    "login": "login"
+    "dashboard": "Dashboard",
+    "myprofile": "My Profile",
+    "myanalyses": "My analyses",
+    "myjobs": "My Jobs",
+    "logout": "Log Out",
+    "login": "Log In"
   },
+
   "language": {
     "english": "English",
     "chinese": "中文"
+  },
+
+  "common": {
+    "submit": "Save",
+    "delete.success": "Deleted successfully",
+    "delete.fail": "Failed to delete jobs",
+    "loading.fail": "Failed to load jobs",
+    "data.empty": "No data found",
+    "analyses.success": "Analysis completed and saved. Latest analysis updated.",
+    "analyses.fail": "Analysis failed."
+  },
+
+  "profilePage": {
+    "needsPermit": "Work Permit Required",
+    "targetRole": "Target Role",
+    "educationLevel": "Education Level",
+    "yearsExperience": "Years of Experience",
+    "skills": "Current Skills",
+    "preferredLocation": "Preferred Location"
+  },
+
+  "profilePageForm": {
+    "needsPermit.yes": "Yes",
+    "needsPermit.no": "No",
+
+    "educationLevel.high_school": "High School",
+    "educationLevel.diploma": "Diploma",
+    "educationLevel.bachelor": "Bachelor's Degree",
+    "educationLevel.master": "Master's Degree",
+    "educationLevel.phd": "PhD",
+
+    "update.success": "Profile updated successfully!",
+    "update.fail": "Update failed. Please try again."
+  },
+
+  "jobs": {
+    "myjobsText": "My Jobs",
+    "myjobsDescription": "Explore jobs you're interested in and see how well your skills match.",
+    "importJob": "Import Job",
+    "searchInputPlacehold": "Search by job title, company, or location",
+
+    "table.col1": "Job Title / Company",
+    "table.col2": "Location",
+    "table.col3": "Skill Match",
+    "table.col4": "Status",
+    "table.col5": "Actions",
+
+    "table.button1": "View Job",
+    "table.button2": "Edit Job",
+    "table.button3": "Delete Job",
+    "table.button3.description": "Are you sure you want to delete ",
+    "table.button3.yes": "Yes",
+    "table.button3.no": "No",
+
+    "analyses.ok": "Analysed",
+    "analyses.fail": "Not Analysed"
+  },
+
+  "jobDetail": {
+    "backToJobs": "Back to My Jobs",
+    "editJob": "Edit Job",
+    "startAnalysis": "Analyse Skills",
+    "analysisDescription": "Analyse how well your skills match this job using your profile.",
+
+    "jobInfo": "Job Information",
+    "minAnnualSalary": "Minimum Annual Base Salary",
+    "workHoursAndDuration": "Weekly Hours / Contract Duration (Months)",
+    "yearsExperience": "Years of Experience",
+    "educationRequirement": "Education Requirements",
+    "required": "Required",
+    "preferred": "Preferred",
+    "needsReview": "Needs Review",
+    "rawDescription": "Original Job Description",
+
+    "permitInfo": "Employment Permit Information",
+    "employerPermitSupport": "Employer Supports Employment Permit",
+    "permitSupportHint": "You can update this when editing the job, based on the job description or information provided by the employer.",
+
+    "latestAnalysis": "Latest Analysis",
+    "skillMatch": "Skill Match",
+    "jobVersion": "Job Version Used",
+    "analysisHistory": "Analysis History for This Job",
+    "viewSnapshotAnalysis": "View Snapshot Analysis",
+    "allAnalysisHistory": "All Analysis History",
+
+    "analysisDateAndSnapshot": "Analysis Date / Job Snapshot",
+    "skillScore": "Skill Score",
+    "viewFullResult": "View Full Results",
+    "currentJob": "Current Job"
+  },
+
+  "jobRequirements": {
+    "title": "Skill Requirements",
+    "required": "Required Skills",
+    "preferred": "Preferred Skills",
+    "review": "Needs Review",
+    "all": "All Required",
+    "any": "Any One",
+    "empty": "No skill requirements",
+    "needsReview": "Requires manual review"
+  },
+
+  "jobDetailAnalyses": {
+    "skillMatch": "Skill Match",
+    "backToHistory": "Back to Analysis History",
+    "scoreDescription": "Calculated based on confirmed required and preferred skill requirements.",
+    "scoreDisclaimer": "The match score does not represent the probability of being hired or prove actual proficiency.",
+    
+    "unavailable": "Score unavailable",
+
+    "requiredCoverage": "Required Skills Coverage",
+    "preferredCoverage": "Preferred Skills Coverage",
+    "matchedSkills": "Matched Skills",
+    "missingSkills": "Missing Skills",
+    "requiredSkills": "Required Skills",
+    "preferredSkills": "Preferred Skills",
+    "skillsNeedsReview": "Skill Requirements Needing Manual Review",
+    "noSkillsNeedsReview": "No Skill Requirements Need Review",
+
+    "scoreDetails": "Scoring Formula and Requirement Group Details",
+    "scoreFormula": "Skill Score = Required Coverage × 80 + Preferred Coverage × 20, rounded to the nearest integer.",
+    "scoreRules": "AND requirements are scored as individual skills, while OR requirements are treated as a single alternative group. Duplicate requirements are removed. The 80/20 weighting is an initial setting and is not claimed to be optimal.",
+
+    "snapshotDetails": "Job / Profile Snapshots and Original Job Description",
+    "historyDisclaimer": "Analysis history is read-only. Changes to the Job or Profile will not affect this result. Running a new analysis creates a new record."
+  },
+
+  "Analyses": {
+    "title": "Analysis History",
+    "description": "Review your past skill match results. Changes to jobs or your profile will not affect these records.",
+    "searchPlaceholder": "Search by job title or company in snapshots",
+    "analysisDateAndSnapshot": "Analysis Date / Job Snapshot",
+    "skillScore": "Skill Score",
+    "viewFullResult": "View Full Results",
+    "currentJob": "Current Job",
+    "requiredAndPreferred": "Required + Preferred"
   }
 }
