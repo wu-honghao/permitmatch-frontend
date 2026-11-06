@@ -52,10 +52,10 @@ function JobDetail() {
 
     useEffect(()=>{
         getJobByid()
-    },[])
+    },[id])
 
     if (loading) return <Spin />;
-    if (error) return <Alert type="error" message={t('common.loading.fail')} />;
+    if (error) return <Alert type="error" message={t('jobDetail.jobDeleted')} />;
     if (!detail) return <Empty description={t('common.data.empty')}/>;
 
     const {
@@ -70,7 +70,6 @@ function JobDetail() {
         permitSupport,
         rawDescription,
         latestAnalysisId,
-        createdAt
     } = detail;
 
     const salaryText = formatSalary(salary)
@@ -107,7 +106,7 @@ function JobDetail() {
                 key: 'jobs-analyses-success',
             });
 
-            navigate(`/jobs/${result.data._id}/analyses`)
+            navigate(`/analyses/${result.data._id}`)
         } catch(e){
             message.error({
                 content: t('common.analyses.fail'),
@@ -118,13 +117,17 @@ function JobDetail() {
         }
     }
 
+    const score = latestAnalysisId?.skillScoreResult?.score;
+
     return <div className="job-detail">
         {/*  */}
 
         <h1>{title}</h1>
         <p className="sub">{company} {`· ${location}`}</p>
         <div style={{ marginBottom: "20px" }}>
-            <Button style={{ marginRight: "10px" }}>{t("jobDetail.editJob")}</Button>
+            <Link to={`/jobs/${id}/edit`}>
+                <Button style={{ marginRight: "10px" }}>{t("jobDetail.editJob")}</Button>
+            </Link>
             <Button loading={analysesLoading} onClick={startAnalyses} type="primary">{t("jobDetail.startAnalysis")}</Button>
         </div>
         <p className="sub">{t("jobDetail.analysisDescription")}</p>
@@ -154,30 +157,36 @@ function JobDetail() {
         </Card>
 
         {/*  */}
-        <Card style={{ marginTop: "20px" }}>
+        {
+            permitSupport?.status && (<Card style={{ marginTop: "20px" }}>
             <h3 style={{ marginTop: 0 }}>{t("jobDetail.permitInfo")}</h3>
 
             <div>
-                <p>{t("jobDetail.employerPermitSupport")}: {permitSupport?.status}</p>
+                <p>{t("jobDetail.employerPermitSupport")}: {t(`jobDetail.employerPermitSupport.${permitSupport?.status}`)}</p>
                 <p>{t("jobDetail.permitSupportHint")} </p>
             </div>
-        </Card>
+        </Card>)
+        }
 
         {/*  */}
-        <Card style={{ marginTop: "20px" }}>
-            <h3 style={{ marginTop: 0 }}>{t("jobDetail.latestAnalysis")}</h3>
+        { 
+            latestAnalysisId !== null && (<Card style={{ marginTop: "20px" }}>
+                <h3 style={{ marginTop: 0 }}>{t("jobDetail.latestAnalysis")}</h3>
 
-            <div>
-                <p className="history-score">{t("jobDetail.skillMatch")}: </p>
-                <p className="cell-sub">{dayjs(createdAt).format(TIMEFORMAT)} · {t("jobDetail.jobVersion")} </p>
-                <Link to={`/jobs/${latestAnalysisId}/analyses`}>
-                    <Button>{t("jobDetail.viewSnapshotAnalysis")}</Button>
-                </Link>
-                <Link to={`/analyses`}>
-                    <Button style={{ marginLeft: "10px" }}>{t("jobDetail.allAnalysisHistory")}</Button>
-                </Link>
-            </div>
-        </Card>
+                <div>
+                    <p className="history-score">{t("jobDetail.skillMatch")}: {score != null
+                        ? `${score} / 100`
+                        : t("jobDetailAnalyses.unavailable")} </p>
+                    <p className="cell-sub">{dayjs(latestAnalysisId.createdAt).format(TIMEFORMAT)} · {t("jobDetail.jobVersion")} </p>
+                    <Link to={`/analyses/${latestAnalysisId._id}`}>
+                        <Button>{t("jobDetail.viewSnapshotAnalysis")}</Button>
+                    </Link>
+                    <Link to={`/analyses`}>
+                        <Button style={{ marginLeft: "10px" }}>{t("jobDetail.allAnalysisHistory")}</Button>
+                    </Link>
+                </div>
+            </Card>)
+        }
     </div>
 }
 

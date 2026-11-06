@@ -62,7 +62,6 @@ function AppLayout(){
           selectedKeys={selectedKeys}
           onSelect={handleSelect}
           items={[
-            { key: "/", icon: <HomeOutlined />, label: t('nav.dashboard') },
             { key: "/jobs", icon: <UnorderedListOutlined />, label: t('nav.myjobs') },
             { key: "/analyses", icon: <PicRightOutlined />, label: t('nav.myanalyses') },
             { key: "/profile", icon: <UserOutlined />, label: t('nav.myprofile') }

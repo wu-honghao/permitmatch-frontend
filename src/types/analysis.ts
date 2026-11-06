@@ -29,7 +29,7 @@ export type SkillScoreResult = {
 };
 
 export type ProfileSnapshot = {
-  needsPermit: string | null;
+  needsPermit: boolean | null;
   targetRole: string | null;
   educationLevel: string | null;
   yearsExperience: number | null;
@@ -72,6 +72,7 @@ export type AnalysisListItem = {
     score: number | null;
   };
   createdAt: string;
+  jobExists: boolean
 };
 
 export type AnalysisListResponse = AnalysisListItem[];

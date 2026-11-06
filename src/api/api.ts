@@ -1,15 +1,5 @@
 import { BASEAPIURL, USERTOKEN } from "../constant"
 
-export type Job = {
-  _id: string
-  title: string
-  company: string
-  location: string
-  salary: number
-  permitSupported: boolean
-  skills: string[]
-}
-
 type HeadersOption = {
   isAuthorization?: boolean,
 }
@@ -116,4 +106,28 @@ export const deleteAPI = async (option: ApiOptionType)=>{
   }
 
   return res
+}
+
+export const patchAPI = async (option: ApiOptionType)=>{
+  const token = localStorage.getItem(USERTOKEN)
+  const headers: headers = {}
+
+  if(option.headersOption?.isAuthorization){
+    headers.authorization = 'Bearer ' + token
+  }
+
+  const res = await fetch(BASEAPIURL + option.url ,{ 
+      headers: {
+          "Content-Type": "application/json",
+          ...headers
+      },
+      method: "PATCH",
+      body: JSON.stringify(option.data)
+    })
+
+  if(!res.ok){
+    throw new Error(res.statusText)
+  }
+    
+  return await res.json()
 }

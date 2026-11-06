@@ -20,12 +20,48 @@
 
   "common": {
     "submit": "保存",
+    "submit.success": "保存成功",
+    "submit.fail": "保存失败",
+    "submit.empty": "未修改",
     "delete.success": "删除成功",
     "delete.fail": "删除失败",
     "loading.fail": "加载失败",
     "data.empty": "暂无数据",
     "analyses.success": "分析已完成并保存；已更新最新分析",
-    "analyses.fail": "分析失败"
+    "analyses.fail": "分析失败",
+    "pleaseinput": "请输入",
+
+    "educationLevel.high_school" : "高中",
+    "educationLevel.diploma" : "大专",
+    "educationLevel.bachelor" : "本科",
+    "educationLevel.master" : "研究生",
+    "educationLevel.phd" : "博士生",
+
+    "permitsupport.supported": "支持",
+    "permitsupport.not_supported": "不支持",
+    "permitsupport.unknown": "待确认"
+  },
+
+  "login": {
+    "eyebrow": "爱尔兰软件岗位匹配",
+    "headline": "更清晰地了解你的下一份工作机会。",
+    "description": "分析岗位技能要求，发现技能差距，保存每一次匹配结果。",
+    "benefit1": "清晰的技能匹配分析",
+    "benefit2": "识别必备与加分技能差距",
+    "benefit3": "永久保存历史分析结果",
+    "disclaimer": "技能匹配结果不代表录用概率或工作许可资格。",
+    "welcome": "欢迎回来",
+    "subtitle": "登录后继续你的岗位分析",
+    "email": "邮箱",
+    "password": "密码",
+    "emailRequired": "请输入邮箱",
+    "emailInvalid": "请输入有效的邮箱地址",
+    "passwordRequired": "请输入密码",
+    "passwordPlaceholder": "请输入密码",
+    "invalidCredentials": "登录失败，请检查邮箱和密码。",
+    "signIn": "登录",
+    "noAccount": "还没有账号？",
+    "signUp": "立即注册"
   },
 
   "profilePage": {
@@ -34,18 +70,18 @@
     "educationLevel": "学历等级",
     "yearsExperience": "工作经验年限",
     "skills": "当前技能",
-    "preferredLocation": "期望地点"
+    "preferredLocation": "期望地点",
+    "title": "我的求职档案",
+    "loadFailed": "档案加载失败，请重试",
+    "retry": "重试",
+    "completeTitle": "完善你的求职档案",
+    "completeDescription": "填写技能、经验和求职偏好后，即可开始分析岗位匹配情况。",
+    "skillsPlaceholder": "输入技能后按 Enter，例如 React、TypeScript"
   },
 
   "profilePageForm": {
     "needsPermit.yes" : "需要",
     "needsPermit.no" : "不需要",
-
-    "educationLevel.high_school" : "高中",
-    "educationLevel.diploma" : "大专",
-    "educationLevel.bachelor" : "本科",
-    "educationLevel.master" : "研究生",
-    "educationLevel.phd" : "博士生",
 
     "update.success": "个人资料更新成功！",
     "update.fail": "更新失败，请重试。"
@@ -71,7 +107,17 @@
     "table.button3.no": "否",
 
     "analyses.ok": "已分析",
-    "analyses.fail": "暂无分析"
+    "analyses.fail": "暂无分析",
+
+    "importTitle": "导入岗位",
+    "importDescription": "粘贴岗位描述，AI 自动提取岗位信息。请核对后再保存。",
+    "pasteDescription": "在这里粘贴英文 Job Description...",
+    "extractWithAI": "AI 提取岗位信息",
+    "enterDescription": "请先粘贴岗位描述",
+    "extractSuccess": "提取成功，请核对岗位信息",
+    "extractFailed": "提取失败，请稍后重试",
+    "reviewExtracted": "请检查 AI 提取的信息，特别是技能要求与工作许可相关内容。",
+    "backToJobs": "返回我的岗位"
   },
 
   "jobDetail": {
@@ -92,6 +138,9 @@
 
     "permitInfo": "工作许可信息",
     "employerPermitSupport": "雇主是否支持 Employment Permit",
+    "employerPermitSupport.supported":"支持",
+    "employerPermitSupport.not_supported":"不支持",
+    "employerPermitSupport.unknown":"待审核",
     "permitSupportHint": "可在编辑岗位中，依据招聘信息或雇主沟通结果手动更新。",
 
     "latestAnalysis": "最近一次分析",
@@ -104,7 +153,9 @@
     "analysisDateAndSnapshot": "分析日期 / 岗位快照",
     "skillScore": "技能分数",
     "viewFullResult": "查看完整结果",
-    "currentJob": "当前 Job"
+    "currentJob": "当前 Job",
+
+    "jobDeleted": "岗位已删除"
   },
 
   "jobRequirements": {
@@ -140,7 +191,9 @@
     "scoreRules": "AND 拆成独立技能计分，OR 作为一个备选要求；重复要求去重。80/20 为初始权重，不宣称最优。",
 
     "snapshotDetails": "当时的 Job / Profile 快照与岗位原文",
-    "historyDisclaimer": "历史记录只读。修改 Job 或 Profile 不会更新这份结果；再次分析会创建新记录。"
+    "historyDisclaimer": "历史记录只读。修改 Job 或 Profile 不会更新这份结果；再次分析会创建新记录。",
+
+    "noReview":"暂无需要复核"
   },
 
   "Analyses": {
@@ -152,5 +205,68 @@
     "viewFullResult": "查看完整结果",
     "currentJob": "当前 Job",
     "requiredAndPreferred": "必备 + 加分"
+  },
+
+  "jobForm": {
+    "title": "确认岗位信息",
+    "description": "请核对职位和技能要求。不确定的信息可留空。",
+    "rawDescription": "岗位原文",
+    "jobTitle": "职位名称",
+    "company": "公司",
+    "location": "地点",
+    "minAnnualSalary": "最低基本年薪（EUR）",
+    "weeklyHours": "每周工作小时",
+    "offerDurationMonths": "工作邀约期限（月）",
+    "minYearsExperience": "最低经验年限",
+    "experienceRange": "经验要求范围",
+    "educationRequirement": "岗位学历要求",
+    "employerPermitSupport": "雇主是否支持 Employment Permit",
+    "permitSupportHint": "可根据招聘信息或与雇主的沟通结果手动更新支持状态。",
+
+    "skillRequirementGroups": "技能要求组",
+    "skillGroupHint": "AND 全部满足，OR 任选其一；保留未知信息，不为填满表单而猜测。",
+    "category": "要求类别",
+    "category.required": "必备",
+    "category.preferred": "加分",
+    "category.review": "待审核",
+
+    "operator": "组内关系",
+    "operator.all": "全部满足 AND",
+    "operator.any": "任意一个 OR",
+    
+    "skills": "技能",
+
+    "sourceText": "原文出处",
+    "removeGroup": "移除此组",
+    "addGroup": "添加要求组",
+    "confirmation": "我已核对岗位和技能要求",
+    "saveJob": "保存岗位"
+  },
+
+  "register": {
+    "eyebrow": "开启你的求职分析",
+    "headline": "了解你的技能，找到更适合的机会。",
+    "description": "创建个人求职档案，分析软件岗位的技能要求，并持续追踪你的匹配结果。",
+    "benefit1": "建立个人技能档案",
+    "benefit2": "分析岗位匹配与技能差距",
+    "benefit3": "保存并比较历史分析结果",
+    "disclaimer": "技能匹配结果不代表录用概率或工作许可资格。",
+    "title": "创建账号",
+    "subtitle": "开始使用 PermitMatch",
+    "email": "邮箱",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "emailRequired": "请输入邮箱",
+    "emailInvalid": "请输入有效的邮箱地址",
+    "passwordRequired": "请输入密码",
+    "passwordMin": "密码至少需要 8 个字符",
+    "passwordPlaceholder": "至少 8 个字符",
+    "confirmRequired": "请再次输入密码",
+    "confirmPlaceholder": "再次输入密码",
+    "passwordMismatch": "两次输入的密码不一致",
+    "createAccount": "创建账号",
+    "failed": "注册失败，请检查填写的信息或稍后重试。",
+    "hasAccount": "已经有账号？",
+    "signIn": "立即登录"
   }
 }

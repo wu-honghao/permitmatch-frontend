@@ -1,3 +1,5 @@
+import type { JobFormValues } from "../types/job";
+
 type Salary = {
   min: number | null;
   max: number | null;
@@ -43,3 +45,28 @@ export function formatSalary(salary: Salary | null): string {
 
   return `${symbol}${amount}${periodText}`;
 }
+
+import _ from "lodash";
+
+export const cleanJobData = (values: JobFormValues) => {
+  const { checked, ...jobData } = values;
+
+  const clean = (value: unknown): unknown => {
+    if (Array.isArray(value)) {
+      return value.map(clean);
+    }
+
+    if (_.isPlainObject(value)) {
+      const result = _.mapValues(value, clean);
+
+      return _.pickBy(
+        result,
+        (v) => v !== undefined && !(_.isPlainObject(v) && _.isEmpty(v))
+      );
+    }
+
+    return value;
+  };
+
+  return clean(jobData);
+};

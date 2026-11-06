@@ -20,12 +20,48 @@
 
   "common": {
     "submit": "Save",
+    "submit.success": "Save successfully",
+    "submit.fail": "Failed to save",
+    "submit.empty": "No Changes Made",
     "delete.success": "Deleted successfully",
-    "delete.fail": "Failed to delete jobs",
-    "loading.fail": "Failed to load jobs",
+    "delete.fail": "Failed to delete",
+    "loading.fail": "Failed to load",
     "data.empty": "No data found",
     "analyses.success": "Analysis completed and saved. Latest analysis updated.",
-    "analyses.fail": "Analysis failed."
+    "analyses.fail": "Analysis failed.",
+    "pleaseinput": "Please input your",
+
+    "educationLevel.high_school": "High School",
+    "educationLevel.diploma": "Diploma",
+    "educationLevel.bachelor": "Bachelor's Degree",
+    "educationLevel.master": "Master's Degree",
+    "educationLevel.phd": "PhD",
+
+    "permitsupport.supported": "Supported",
+    "permitsupport.not_supported": "Not Supported",
+    "permitsupport.unknown": "To Be Confirmed"
+  },
+
+  "login": {
+    "eyebrow": "IRISH SOFTWARE JOB MATCHING",
+    "headline": "Your next opportunity, with more clarity.",
+    "description": "Understand job requirements, identify skill gaps, and keep track of every analysis.",
+    "benefit1": "Clear skill match analysis",
+    "benefit2": "Required and preferred skill gaps",
+    "benefit3": "Saved analysis history",
+    "disclaimer": "Skill matching does not predict hiring outcomes or determine employment permit eligibility.",
+    "welcome": "Welcome back",
+    "subtitle": "Sign in to continue your job analysis",
+    "email": "Email",
+    "password": "Password",
+    "emailRequired": "Please enter your email",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Please enter your password",
+    "passwordPlaceholder": "Enter your password",
+    "invalidCredentials": "Sign-in failed. Please check your email and password.",
+    "signIn": "Sign in",
+    "noAccount": "Don't have an account?",
+    "signUp": "Create an account"
   },
 
   "profilePage": {
@@ -34,7 +70,13 @@
     "educationLevel": "Education Level",
     "yearsExperience": "Years of Experience",
     "skills": "Current Skills",
-    "preferredLocation": "Preferred Location"
+    "preferredLocation": "Preferred Location",
+    "title": "My Profile",
+    "loadFailed": "Failed to load your profile. Please try again.",
+    "retry": "Retry",
+    "completeTitle": "Complete your profile",
+    "completeDescription": "Add your skills, experience and job preferences to start analysing job matches.",
+    "skillsPlaceholder": "Enter a skill and press Enter, e.g. React, TypeScript"
   },
 
   "profilePageForm": {
@@ -71,7 +113,17 @@
     "table.button3.no": "No",
 
     "analyses.ok": "Analysed",
-    "analyses.fail": "Not Analysed"
+    "analyses.fail": "Not Analysed",
+
+    "importTitle": "Import Job",
+    "importDescription": "Paste a job description to extract structured information with AI. Review before saving.",
+    "pasteDescription": "Paste the English job description here...",
+    "extractWithAI": "Extract with AI",
+    "enterDescription": "Please paste a job description first",
+    "extractSuccess": "Extraction complete. Please review the details.",
+    "extractFailed": "Extraction failed. Please try again.",
+    "reviewExtracted": "Review the extracted details, especially skill requirements and employment permit information.",
+    "backToJobs": "Back to My Jobs"
   },
 
   "jobDetail": {
@@ -92,6 +144,9 @@
 
     "permitInfo": "Employment Permit Information",
     "employerPermitSupport": "Employer Supports Employment Permit",
+    "employerPermitSupport.supported":"Supported",
+    "employerPermitSupport.not_supported":"Not supported",
+    "employerPermitSupport.unknown":"Need Review",
     "permitSupportHint": "You can update this when editing the job, based on the job description or information provided by the employer.",
 
     "latestAnalysis": "Latest Analysis",
@@ -104,7 +159,9 @@
     "analysisDateAndSnapshot": "Analysis Date / Job Snapshot",
     "skillScore": "Skill Score",
     "viewFullResult": "View Full Results",
-    "currentJob": "Current Job"
+    "currentJob": "Current Job",
+
+    "jobDeleted": "Job Deleted"
   },
 
   "jobRequirements": {
@@ -140,7 +197,9 @@
     "scoreRules": "AND requirements are scored as individual skills, while OR requirements are treated as a single alternative group. Duplicate requirements are removed. The 80/20 weighting is an initial setting and is not claimed to be optimal.",
 
     "snapshotDetails": "Job / Profile Snapshots and Original Job Description",
-    "historyDisclaimer": "Analysis history is read-only. Changes to the Job or Profile will not affect this result. Running a new analysis creates a new record."
+    "historyDisclaimer": "Analysis history is read-only. Changes to the Job or Profile will not affect this result. Running a new analysis creates a new record.",
+
+    "noReview":"No Review"
   },
 
   "Analyses": {
@@ -152,5 +211,68 @@
     "viewFullResult": "View Full Results",
     "currentJob": "Current Job",
     "requiredAndPreferred": "Required + Preferred"
+  },
+
+  "jobForm": {
+    "title": "Confirm Job Information",
+    "description": "Review the job details and skill requirements. Leave uncertain information blank.",
+    "rawDescription": "Job raw description",
+    "jobTitle": "Job Title",
+    "company": "Company",
+    "location": "Location",
+    "minAnnualSalary": "Minimum Annual Base Salary (EUR)",
+    "weeklyHours": "Weekly Working Hours",
+    "offerDurationMonths": "Job Offer Duration (Months)",
+    "minYearsExperience": "Minimum Years of Experience",
+    "experienceRange": "Experience Requirement Range",
+    "educationRequirement": "Education Requirements",
+    "employerPermitSupport": "Employer Supports Employment Permit",
+    "permitSupportHint": "You can update this based on the job description or information provided by the employer.",
+
+    "skillRequirementGroups": "Skill Requirement Groups",
+    "skillGroupHint": "AND means all skills are required; OR means any one is sufficient. Keep unknown information as unknown rather than guessing.",
+    "category": "Requirement Type",
+    "category.required": "Required",
+    "category.preferred": "Preferred",
+    "category.review": "Needs Review",
+
+    "operator": "Group Operator",
+    "operator.all": "All Required (AND)",
+    "operator.any": "Any One (OR)",
+
+    "skillsPlaceholder": "Skills (comma-separated)",
+    
+    "sourceText": "Original Source Text",
+    "removeGroup": "Remove Group",
+    "addGroup": "Add Requirement Group",
+    "confirmation": "I have reviewed the job details and skill requirements",
+    "saveJob": "Save Job"
+  },
+
+  "register": {
+    "eyebrow": "START YOUR JOB MATCHING JOURNEY",
+    "headline": "Know your skills. Find better opportunities.",
+    "description": "Build your candidate profile, understand software job requirements, and track your skill matching results.",
+    "benefit1": "Build your personal skill profile",
+    "benefit2": "Understand skill matches and gaps",
+    "benefit3": "Save and compare analysis history",
+    "disclaimer": "Skill matching does not predict hiring outcomes or determine employment permit eligibility.",
+    "title": "Create an account",
+    "subtitle": "Get started with PermitMatch",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "emailRequired": "Please enter your email",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Please enter a password",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordPlaceholder": "At least 8 characters",
+    "confirmRequired": "Please confirm your password",
+    "confirmPlaceholder": "Enter your password again",
+    "passwordMismatch": "Passwords do not match",
+    "createAccount": "Create account",
+    "failed": "Registration failed. Please check your details and try again.",
+    "hasAccount": "Already have an account?",
+    "signIn": "Sign in"
   }
 }

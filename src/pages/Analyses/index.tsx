@@ -38,8 +38,11 @@ function Analyses(){
             key: 'action',
             render: (_, record) => (
                 <Space size="medium">
-                    <Link to={`/jobs/${record._id}/analyses`}>{t('Analyses.viewFullResult')}</Link>
-                    <Link to={`/jobs/${record.jobId}`}>{t('Analyses.currentJob')}</Link>
+                    <Link to={`/analyses/${record._id}`}>{t('Analyses.viewFullResult')}</Link>
+                    
+                    {
+                        record.jobExists && <Link to={`/jobs/${record.jobId}`}>{t('Analyses.currentJob')}</Link>
+                    }
                 </Space>
             ),
         },

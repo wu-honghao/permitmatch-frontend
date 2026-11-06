@@ -42,6 +42,15 @@ export type PermitSupport = {
   status: 'supported' | 'not_supported' | 'unknown';
 };
 
+type latestAnalysis = {
+  createdAt: Date;
+  skillScoreResult: {
+    score: number,
+    scoreType: string
+  };
+  _id: string;
+}
+
 export type Job = {
   _id: string;
   ownerId: string;
@@ -55,7 +64,7 @@ export type Job = {
   experienceRequirement: ExperienceRequirement | null;
   requirements: SkillRequirement[];
   permitSupport: PermitSupport | null;
-  latestAnalysisId: string | null;
+  latestAnalysisId: latestAnalysis
   createdAt: string;
   updatedAt: string;
 };
@@ -70,4 +79,41 @@ export type JobListItem = {
   skillScore: number | null;
   scoreType: ScoreType | null;
   updatedAt: string;
+};
+
+export type JobFormValues = {
+  title: string;
+  company?: string;
+  location?: string;
+  rawDescription?: string;
+
+  salary?: {
+    min?: number | null;
+  };
+
+  contract?: {
+    durationMonths?: number | null;
+  };
+
+  experienceRequirement?: {
+    minYears?: number | null;
+    scope?: string | null;
+  };
+
+  educationRequirement?: {
+    level?: string | null;
+  };
+
+  permitSupport?: {
+    status?: "supported" | "not_supported" | "unknown";
+  };
+
+  requirements?: {
+    category: "required" | "preferred" | "review";
+    operator?: "all" | "any" | null;
+    skills?: string[];
+    rawContent?: string | null;
+  }[];
+
+  checked?: boolean;
 };

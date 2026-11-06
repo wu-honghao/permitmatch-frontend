@@ -33,7 +33,7 @@ function JobDetailAnalyses(){
 
     useEffect(()=>{
         getAnalyses()
-    },[])
+    },[id])
 
     if (loading) return <Spin />;
     if (error) {
@@ -93,7 +93,7 @@ function JobDetailAnalyses(){
             <h3>{t("jobDetailAnalyses.skillsNeedsReview")} </h3>
 
             {reviewSkills.length === 0 ? (
-                <p>{t("analysis.noReview")}</p>
+                <p>{t("jobDetailAnalyses.noReview")}</p>
                 ) : (
                 <Flex vertical gap={8}>
                     {reviewSkills.map((item, index) => (
