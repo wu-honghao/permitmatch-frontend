@@ -27,6 +27,7 @@ import JobNew from './pages/Jobs/JobNew.tsx'
 import JobDetailAnalyses from './pages/JobDetailAnalyses/JobDetailAnalyses.tsx'
 import Analyses from './pages/Analyses/index.tsx'
 import Register from './pages/Register/index.tsx'
+import SkillGaps from './pages/SkillGaps/index.tsx'
 
 function AppRoot() {
   const { i18n } = useTranslation()
@@ -54,6 +55,7 @@ function AppRoot() {
                 <Route path="/jobs/:id/edit" element={<JobEdit />} />
                 <Route path="/jobs/new" element={<JobNew />} />
                 <Route path="/analyses" element={<Analyses />} />
+                <Route path='/skillGaps' element={<SkillGaps />} />
               </Route>
             </Route>
           </Routes>

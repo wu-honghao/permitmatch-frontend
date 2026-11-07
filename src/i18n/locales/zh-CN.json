@@ -10,7 +10,8 @@
     "myanalyses": "分析历史",
     "myjobs": "我的岗位",
     "logout": "退出登录",
-    "login": "登陆"
+    "login": "登陆",
+    "skillsgap": "技能差距"
   },
 
   "language": {
@@ -268,5 +269,16 @@
     "failed": "注册失败，请检查填写的信息或稍后重试。",
     "hasAccount": "已经有账号？",
     "signIn": "立即登录"
+  },
+
+  "skillsgap": {
+    "skills": "缺失技能",
+    "requiredCount": "必备",
+    "preferredCount": "加分",
+    "totalCount": "总岗位数",
+    "title": "跨岗位技能差距",
+    "description": "汇总不同岗位中反复缺失的技能要求",
+    "totalJobs": "参与统计的岗位",
+    "uniqueSkillGaps": "不同技能缺口"
   }
 }

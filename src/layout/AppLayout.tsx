@@ -3,6 +3,7 @@ import {
   HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  PicCenterOutlined,
   PicRightOutlined,
   UnorderedListOutlined,
   UserOutlined,
@@ -64,7 +65,8 @@ function AppLayout(){
           items={[
             { key: "/jobs", icon: <UnorderedListOutlined />, label: t('nav.myjobs') },
             { key: "/analyses", icon: <PicRightOutlined />, label: t('nav.myanalyses') },
-            { key: "/profile", icon: <UserOutlined />, label: t('nav.myprofile') }
+            { key: "/profile", icon: <UserOutlined />, label: t('nav.myprofile') },
+            { key: "/skillGaps", icon: <PicCenterOutlined />, label: t('nav.skillsgap') }
           ]}
         />
       </Sider>

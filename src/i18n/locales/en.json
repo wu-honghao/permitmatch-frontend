@@ -10,7 +10,8 @@
     "myanalyses": "My analyses",
     "myjobs": "My Jobs",
     "logout": "Log Out",
-    "login": "Log In"
+    "login": "Log In",
+    "skillsgap": "Skills Gap"
   },
 
   "language": {
@@ -274,5 +275,16 @@
     "failed": "Registration failed. Please check your details and try again.",
     "hasAccount": "Already have an account?",
     "signIn": "Sign in"
+  },
+
+  "skillsgap": {
+    "skills": "Missing Skills",
+    "requiredCount": "Required",
+    "preferredCount": "Preferred",
+    "totalCount": "Total Jobs",
+    "title": "Cross-Job Skill Gaps",
+    "description": "Identify skill requirements that are repeatedly missing across different jobs.",
+    "totalJobs": "Jobs Analysed",
+    "uniqueSkillGaps": "Unique Skill Gaps"
   }
 }
