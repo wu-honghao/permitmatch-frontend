@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-  HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PicCenterOutlined,

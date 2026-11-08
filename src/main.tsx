@@ -20,7 +20,6 @@ import AppLayout from './layout/AppLayout.tsx'
 
 import './index.css';
 import Jobs from './pages/Jobs/Jobs.tsx'
-import Dashboard from './pages/Dashboard.tsx'
 import JobDetail from './pages/JobDetail/JobDetail.tsx'
 import JobEdit from './pages/Jobs/JobEdit.tsx'
 import JobNew from './pages/Jobs/JobNew.tsx'

@@ -56,7 +56,11 @@ export const cleanJobData = (values: JobFormValues) => {
       return value.map(clean);
     }
 
-    if (_.isPlainObject(value)) {
+    if (
+      typeof value === "object" &&
+      value !== null &&
+      _.isPlainObject(value)
+    ) {
       const result = _.mapValues(value, clean);
 
       return _.pickBy(

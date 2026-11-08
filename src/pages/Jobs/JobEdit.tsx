@@ -1,6 +1,6 @@
 import { Alert, Empty, message, Spin } from "antd"
 import { getAPI, patchAPI } from "../../api/api"
-import type { Job, JobFormValues } from "../../types/job"
+import type { Job, JobFormValues, SkillRequirement } from "../../types/job"
 import JobForm from "./Form/JobForm"
 import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
@@ -87,7 +87,7 @@ function JobEdit () {
                 permitSupport: {
                     status: job.permitSupport?.status ?? "unknown"
                 },
-                requirements: job.requirements?.map(item => ({
+                requirements: job.requirements?.map((item: SkillRequirement) => ({
                     category: item.category,
                     operator: item.operator,
                     skills: item.skills,
@@ -109,12 +109,15 @@ function JobEdit () {
 
     const navigate = useNavigate();
 
-    const handleSubmit = async (values: JobFormValues) => {
+    const handleSubmit = async (
+        values: JobFormValues
+    ): Promise<void> => {
         if (!originJob || !initJob) return;
         const patch = buildPatch(originJob, initJob, values)
         
         if(Object.keys(patch).length === 0){
-            return message.info(`${t("common.submit.empty")}`)
+            message.info(`${t("common.submit.empty")}`)
+            return;
         }
 
         try{

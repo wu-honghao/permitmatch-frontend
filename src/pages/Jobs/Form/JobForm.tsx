@@ -1,5 +1,5 @@
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Col, Form, Input, InputNumber, Row, Select, Space } from 'antd';
+import { Button, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { educationLevels, permitSupport, requirementCategory, requirementOperator } from '../../../constant/jobForm';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
@@ -185,14 +185,13 @@ function JobForm({ initialValues, loading, onSubmit }: JobFormProps) {
                                         message: `${t('common.pleaseinput')}${t('jobForm.category')}`
                                     }
                                 ]}
-                                onChange={() => {
+                            >
+                                <Select options={requirementCategoryOption} onChange={() => {
                                     void form.validateFields([
                                     ["requirements", name, "operator"],
                                     ["requirements", name, "skills"]
                                     ]).catch(() => {});
-                                }}
-                            >
-                                <Select options={requirementCategoryOption} />
+                                }}/>
                             </Form.Item>
                         </Col>
 
