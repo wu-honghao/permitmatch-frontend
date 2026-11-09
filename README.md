@@ -1,78 +1,117 @@
-# React + TypeScript + Vite
+# PermitMatch — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PermitMatch is a web application for software job seekers exploring opportunities in Ireland. It helps users compare their skills against job requirements, review missing skills, and track analyses across multiple jobs.
 
-Currently, two official plugins are available:
+This repository contains the **frontend** of PermitMatch. It is designed for individual job seekers, not recruitment agencies or employers.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Authentication:** Registration, login, and protected application routes.
+- **Candidate profile:** Manage target role, experience, education, skills, preferred location, and employment-permit needs.
+- **Job management:** Create, view, edit, and delete saved job descriptions and structured requirements.
+- **Skill matching:** Display match scores, required and preferred skill coverage, and missing skills.
+- **Analysis history:** Review previous job analyses and their saved results.
+- **Cross-role skill gaps:** Identify skills repeatedly missing across analysed jobs.
+- **Internationalisation:** Switch between English and Simplified Chinese.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+> **Important:** Skill scores are not hiring probabilities or proof of proficiency. Employment-permit information is for guidance only; PermitMatch does not determine visa or permit eligibility.
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## Tech Stack
 
-## Expanding the ESLint configuration
+| Area | Technologies |
+| --- | --- |
+| UI | React 19, TypeScript, Ant Design 6 |
+| Build | Vite 8 |
+| Routing | React Router 8 |
+| State | Redux Toolkit, React Redux |
+| Internationalisation | i18next, react-i18next |
+| Testing | Vitest, Playwright |
+| Deployment | Docker, Nginx |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js version compatible with the project's Vite toolchain
+- npm
+- A running PermitMatch backend API
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Install and run
 
+```bash
+npm ci
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Create a `.env.local` file at the repository root:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```dotenv
+VITE_API_URL=http://localhost:3000
 ```
+
+Set `VITE_API_URL` to the base URL of your backend, with no trailing slash. Ensure the backend permits requests from the frontend origin via its CORS configuration.
+
+```bash
+npm run dev
+```
+
+Open the local URL printed by Vite.
+
+## Available Commands
+
+```bash
+npm run dev       # Start the development server
+npm run build     # TypeScript check and production build
+npm run preview   # Preview the production build locally
+npm run lint      # Run ESLint
+npm run test      # Run Vitest
+```
+
+### End-to-end testing
+
+The repository includes Playwright configuration and an initial browser login test:
+
+```bash
+npx playwright install
+npx playwright test
+```
+
+The browser tests require the frontend and backend to be running and suitable test accounts/data to be available. The existing Playwright tests are not yet a self-contained CI test suite.
+
+## Docker
+
+The Dockerfile builds the frontend and serves the resulting static files with Nginx.
+
+```bash
+docker build --build-arg VITE_API_URL=http://localhost:3000 -t permitmatch-frontend .
+docker run --rm -p 8080:80 permitmatch-frontend
+```
+
+Visit `http://localhost:8080`. When deploying, provide a backend URL reachable **from the user's browser**; Vite embeds `VITE_API_URL` at build time. If the frontend is served over HTTPS, use an HTTPS API URL.
+
+## Project Structure
+
+```text
+src/
+├── api/            # HTTP request helpers
+├── components/     # Reusable UI components
+├── features/auth/  # Authentication state
+├── i18n/           # English and Chinese translations
+├── layout/         # Application layout
+├── pages/          # Login, Profile, Jobs, Analysis, Skill Gaps
+├── store/          # Redux store
+├── types/          # TypeScript domain types
+└── utils/          # Formatting and other utilities
+e2e/                # Playwright browser tests
+```
+
+## Project Status
+
+The core frontend workflows are implemented. Automated test coverage and production deployment are being improved. Job information is currently entered and confirmed manually; AI-assisted job-description extraction is not part of this version.
+
+## Related Repository
+
+The backend is maintained separately as **permitmatch-backend**. Add its GitHub URL here once the repository is published.
+
+## Disclaimer
+
+PermitMatch is a portfolio and educational project. Its analysis is informational and should not replace professional recruitment or immigration advice.
