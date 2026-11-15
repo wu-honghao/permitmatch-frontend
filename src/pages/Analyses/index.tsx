@@ -2,7 +2,7 @@ import { Alert, Empty, message, Space, Table } from 'antd';
 import type { TableProps } from 'antd';
 import { Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { getAPI } from '../../api/api';
+import { getAPI, type ApiResponse } from '../../api/api';
 import { useEffect, useState } from 'react';
 
 const { Title } = Typography;
@@ -50,20 +50,25 @@ function Analyses(){
 
     const [AnalysesList, setAnalysesList] = useState<AnalysisListItem[]>([]);
 
-    const getAnalysesList = async () => {
+    const getAnalysesList = async (signal: AbortSignal) => {
         try {
             setLoading(true)
             setError(false)
 
-            const result = await getAPI({
+            const result = await getAPI<ApiResponse<AnalysisListItem[]>>({
                 url: '/analyses',
                 headersOption: {
                     isAuthorization: true
-                }
+                },
+                signal
             })
 
             setAnalysesList(result.data)
         } catch(e){
+            if (e instanceof Error && e.name === 'AbortError') {
+                return;
+            }
+
             console.log(e)
             messageApi.error({
                 content: t('common.loading.fail'),
@@ -72,12 +77,18 @@ function Analyses(){
             setError(true)
             setAnalysesList([])
         } finally {
-            setLoading(false);
+            if (!signal?.aborted) {
+                setLoading(false);
+            }
         }
     }
 
     useEffect(()=>{
-        getAnalysesList()
+        const controller = new AbortController()
+
+        getAnalysesList(controller.signal)
+
+        return () => controller.abort()
     },[])
 
     const [messageApi, holder] = message.useMessage();

@@ -16,9 +16,12 @@ const authSlice = createSlice({
     reducers: {
         saveUserData(state, action){
             state.userData = action.payload
-        }
+        },
+        clearUserData(state) {
+            state.userData = { email: "" };
+        },
     }
 })
 
-export const { saveUserData } = authSlice.actions
+export const { saveUserData, clearUserData } = authSlice.actions
 export default authSlice.reducer

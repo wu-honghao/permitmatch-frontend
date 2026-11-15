@@ -1,7 +1,7 @@
 import { Alert, Empty, Table } from 'antd';
 import type { TableProps } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { getAPI } from '../../api/api';
+import { getAPI, type ApiResponse } from '../../api/api';
 import { useEffect, useState } from 'react';
 
 interface DataType {
@@ -11,6 +11,10 @@ interface DataType {
   totalCount: number;
 }
 
+interface SkillsGapRes {
+    gaps: DataType[],
+    totalJobs: number
+}
 function SkillGaps(){
     const { t } = useTranslation();
 
@@ -18,13 +22,17 @@ function SkillGaps(){
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false);
     
-    const getSkillsGap = async () => {
+    const getSkillsGap = async (signal: AbortSignal) => {
         try{
             setLoading(true)
-            const result = await getAPI({ url: "/skillsGap", headersOption: { isAuthorization: true } })
+            const result = await getAPI<ApiResponse<SkillsGapRes>>({ url: "/skillsGap", headersOption: { isAuthorization: true }, signal })
 
             setData(result.data.gaps)
         }catch(e){
+            if (e instanceof Error && e.name === 'AbortError') {
+                return;
+            }
+            
             console.log(e)
             setError(true)
         }finally{
@@ -32,14 +40,26 @@ function SkillGaps(){
         }
     }
 
-    useEffect(()=>{ getSkillsGap() },[])
+    useEffect(()=>{ 
+        const controller = new AbortController()
+
+        getSkillsGap(controller.signal)
+
+        return () => controller.abort()
+     },[])
     
     const columns: TableProps<DataType>['columns'] = [
         {
             title: t("skillsgap.skills"),
             dataIndex: 'skills',
             key: 'skills',
-            render: (text)=>(text.join(' OR '))
+            render: (text)=>{
+                if(text.length===1){
+                    return text.join(' / ')
+                }else{
+                    return `${text.join(' / ')} (${t('skillsgap.anyOne')})` 
+                }
+            }
         },
         {
             title: t("skillsgap.requiredCount"),

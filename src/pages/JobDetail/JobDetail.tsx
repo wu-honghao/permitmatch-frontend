@@ -2,13 +2,14 @@ import { Alert, Button, Card, Collapse, Empty, message, Spin, Typography, type C
 import { useTranslation } from "react-i18next"
 import { Link, useNavigate, useParams } from "react-router"
 import "./index.css"
-import { getAPI, postAPI } from "../../api/api";
+import { getAPI, postAPI, type ApiResponse } from "../../api/api";
 import { useEffect, useState } from "react";
 import type { Job } from "../../types/job";
 import { formatSalary } from "../../utils/jobFormatters";
 import JobRequirements from "../../components/JobRequirements";
 import dayjs from "dayjs";
 import { TIMEFORMAT } from "../../constant";
+import type { AnalysisListItem } from "../../types/analysis";
 
 const panelStyle: React.CSSProperties = {
   whiteSpace: 'pre-wrap',
@@ -32,26 +33,39 @@ function JobDetail() {
     const [analysesLoading, setAnalysesLoading] = useState<boolean>(false)
     const navigate = useNavigate()
     
-    const getJobByid = async () => {
+    const getJobByid = async (signal: AbortSignal) => {
         try {
             setLoading(true);
             setError(false);
 
-            const result = await getAPI({
+            const result = await getAPI<ApiResponse<Job>>({
                 url: `/jobs/${id}`,
-                headersOption: { isAuthorization: true }
+                headersOption: { isAuthorization: true },
+                signal
             });
 
             setDetail(result.data);
-        } catch {
+        } catch(e) {
+            if (e instanceof Error && e.name === 'AbortError') {
+                return;
+            }
+
             setError(true);
         } finally {
-            setLoading(false);
+            if (!signal?.aborted) {
+                setLoading(false);
+            }
         }
     };
 
     useEffect(()=>{
-        getJobByid()
+        setDetail(null)
+        
+        const cnotroller = new AbortController()
+
+        getJobByid(cnotroller.signal)
+
+        return () => cnotroller.abort()
     },[id])
 
     if (loading) return <Spin />;
@@ -94,7 +108,7 @@ function JobDetail() {
         setAnalysesLoading(true)
 
         try{
-            const result = await postAPI({
+            const result = await postAPI<ApiResponse<AnalysisListItem>>({
                 url: `/jobs/${id}/analyses`,
                 headersOption: {
                     isAuthorization: true
@@ -170,7 +184,7 @@ function JobDetail() {
 
         {/*  */}
         { 
-            latestAnalysisId !== null && (<Card style={{ marginTop: "20px" }}>
+            latestAnalysisId && (<Card style={{ marginTop: "20px" }}>
                 <h3 style={{ marginTop: 0 }}>{t("jobDetail.latestAnalysis")}</h3>
 
                 <div>

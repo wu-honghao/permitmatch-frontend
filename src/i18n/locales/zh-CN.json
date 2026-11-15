@@ -187,8 +187,10 @@
     "noSkillsNeedsReview": "暂无待复核的技能要求",
 
     "scoreDetails": "评分公式与要求组明细",
-    "scoreFormula": "技能分 = 必备覆盖率 × 80 + 加分覆盖率 × 20，最后四舍五入。",
-    "scoreRules": "AND 拆成独立技能计分，OR 作为一个备选要求；重复要求去重。80/20 为初始权重，不宣称最优。",
+    "scoreFormula": "技能匹配分 = 必备要求覆盖率 × 80% + 加分要求覆盖率 × 20%。",
+    "scoreRules": "AND：组内技能需全部满足；OR：满足任意一项即可。",
+    "scoreExplanation": "覆盖率按技能要求组计算，不按单个技能数量计算。匹配分数不代表录用概率或实际熟练程度。",
+    "scoreNote": "注意：如果岗位只有必备要求，则按必备覆盖率 × 100% 计算；没有可评分要求时，应显示“无法评分”，不能套用 80/20。",
 
     "snapshotDetails": "当时的 Job / Profile 快照与岗位原文",
     "historyDisclaimer": "历史记录只读。修改 Job 或 Profile 不会更新这份结果；再次分析会创建新记录。",
@@ -272,12 +274,25 @@
 
   "skillsgap": {
     "skills": "缺失技能",
-    "requiredCount": "必备",
-    "preferredCount": "加分",
-    "totalCount": "总岗位数",
+    "requiredCount": "必备岗位数",
+    "preferredCount": "加分岗位数",
+    "totalCount": "涉及岗位数",
     "title": "跨岗位技能差距",
     "description": "汇总不同岗位中反复缺失的技能要求",
     "totalJobs": "参与统计的岗位",
-    "uniqueSkillGaps": "不同技能缺口"
+    "uniqueSkillGaps": "不同技能缺口",
+    "anyOne": "任选其一"
+  },
+
+  "aiError": {
+    "503": "AI 服务暂时不可用，请稍后重试",
+    "504": "AI 请求超时，请稍后重试",
+    "502": "AI 返回的数据格式有误，请重新提取",
+    "429": "请求过于频繁，请稍后重试",
+    "400": "岗位描述格式不正确",
+    "401": "登录已过期，请重新登录",
+    "default": "AI 提取失败，请稍后重试"
   }
+
+
 }

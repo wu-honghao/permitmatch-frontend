@@ -14,7 +14,7 @@ import {
   Spin,
 } from "antd";
 import { useTranslation } from "react-i18next";
-import { getAPI, putAPI } from "../api/api";
+import { getAPI, putAPI, type ApiResponse } from "../api/api";
 import { educationLevels } from "../constant/jobForm";
 
 type ProfileFieldType = {
@@ -41,16 +41,19 @@ function ProfilePage() {
   useEffect(() => {
     let active = true;
 
+    const controller = new AbortController()
+
     const loadProfile = async () => {
       setLoading(true);
       setLoadError(false);
 
       try {
-        const result = await getAPI({
+        const result = await getAPI<ApiResponse<ProfileFieldType>>({
           url: "/profile",
           headersOption: {
             isAuthorization: true,
           },
+          signal: controller.signal
         });
 
         if (!active) return;
@@ -67,6 +70,10 @@ function ProfilePage() {
         }
       } catch (error) {
         if (!active) return;
+        
+        if (error instanceof Error && error.name === 'AbortError') {
+            return;
+        }
 
         console.error("Failed to load profile:", error);
         setLoadError(true);
@@ -81,7 +88,9 @@ function ProfilePage() {
 
     return () => {
       active = false;
+      controller.abort()
     };
+
   }, [form, retryCount]);
 
   const onFinish: FormProps<ProfileFieldType>["onFinish"] = async (

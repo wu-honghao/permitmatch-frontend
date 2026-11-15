@@ -2,7 +2,7 @@ import { Alert, Button, Empty, message, Popconfirm, Space, Table, Tag } from 'an
 import type { PopconfirmProps, TableProps } from 'antd';
 import { Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { deleteAPI, getAPI } from '../../api/api';
+import { deleteAPI, getAPI, type ApiResponse } from '../../api/api';
 import { useEffect, useState } from 'react';
 import type { JobListItem } from '../../types/job';
 
@@ -74,20 +74,25 @@ function Jobs(){
 
     const [jobList, setJobList] = useState<JobListItem[]>([]);
 
-    const getJobList = async () => {
+    const getJobList = async (signal?: AbortSignal) => {
         try {
             setLoading(true)
             setError(false)
 
-            const result = await getAPI({
+            const result = await getAPI<ApiResponse<JobListItem[]>>({
                 url: '/jobs',
                 headersOption: {
                     isAuthorization: true
-                }
+                },
+                signal,
             })
 
             setJobList(result.data)
         } catch(e){
+            if (e instanceof Error && e.name === 'AbortError') {
+                return;
+            }
+
             console.log(e)
             messageApi.error({
                 content: t('common.loading.fail'),
@@ -96,23 +101,27 @@ function Jobs(){
             setError(true)
             setJobList([])
         } finally {
-            setLoading(false);
+            if (!signal?.aborted) {
+                setLoading(false);
+            }
         }
     }
 
     useEffect(()=>{
-        getJobList()
+        const controller = new AbortController()
+
+        getJobList(controller.signal)
+
+        return () => controller.abort()
     },[])
 
     const [messageApi, holder] = message.useMessage();
 
     const confirm = async (id: string) => {
         try{
-            const result = await deleteAPI({ url: `/jobs/${id}`, headersOption: { isAuthorization: true } })
+            await deleteAPI<null>({ url: `/jobs/${id}`, headersOption: { isAuthorization: true } })
 
-            if(result.status === 204){
-                messageApi.success(t('common.delete.success'));
-            }
+            messageApi.success(t('common.delete.success'));
 
             await getJobList()
         }catch(e){

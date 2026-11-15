@@ -47,30 +47,50 @@ export function formatSalary(salary: Salary | null): string {
 }
 
 import _ from "lodash";
+export const mapFormToJobPayload = (v: JobFormValues) => ({
+  rawDescription: v.rawDescription ?? null,
+  title: v.title?.trim() ?? "",
+  company: v.company ?? null,
+  location: v.location ?? null,
 
-export const cleanJobData = (values: JobFormValues) => {
-  const { checked, ...jobData } = values;
+  salary: v.salary ? {
+    rawContent: null,
+    min: v.salary.min ?? null,
+    max: null,
+    currency: null,
+    period: null,
+  } : null,
 
-  const clean = (value: unknown): unknown => {
-    if (Array.isArray(value)) {
-      return value.map(clean);
-    }
+  contract: v.contract ? {
+    rawContent: null,
+    type: null,
+    durationMonths: v.contract.durationMonths ?? null,
+  } : null,
 
-    if (
-      typeof value === "object" &&
-      value !== null &&
-      _.isPlainObject(value)
-    ) {
-      const result = _.mapValues(value, clean);
+  educationRequirement: v.educationRequirement ? {
+    rawContent: null,
+    level: v.educationRequirement.level ?? null,
+    importance: null,
+    fieldOfStudy: null,
+  } : null,
 
-      return _.pickBy(
-        result,
-        (v) => v !== undefined && !(_.isPlainObject(v) && _.isEmpty(v))
-      );
-    }
+  experienceRequirement: v.experienceRequirement ? {
+    rawContent: null,
+    minYears: v.experienceRequirement.minYears ?? null,
+    maxYears: null,
+    importance: null,
+    scope: v.experienceRequirement.scope ?? null,
+  } : null,
 
-    return value;
-  };
+  requirements: (v.requirements ?? []).map(r => ({
+    rawContent: r.rawContent ?? null,
+    category: r.category,
+    operator: r.operator ?? null,
+    skills: r.skills ?? [],
+  })),
 
-  return clean(jobData);
-};
+  permitSupport: v.permitSupport ? {
+    rawContent: null,
+    status: v.permitSupport.status ?? "unknown",
+  } : null,
+});

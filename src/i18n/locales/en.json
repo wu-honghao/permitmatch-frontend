@@ -193,8 +193,10 @@
     "noSkillsNeedsReview": "No Skill Requirements Need Review",
 
     "scoreDetails": "Scoring Formula and Requirement Group Details",
-    "scoreFormula": "Skill Score = Required Coverage × 80 + Preferred Coverage × 20, rounded to the nearest integer.",
-    "scoreRules": "AND requirements are scored as individual skills, while OR requirements are treated as a single alternative group. Duplicate requirements are removed. The 80/20 weighting is an initial setting and is not claimed to be optimal.",
+    "scoreFormula": "Skill Match Score = Required Requirements Coverage × 80% + Preferred Requirements Coverage × 20%.",
+    "scoreRules": "AND: All skills within the group must be matched. OR: Matching any one skill is sufficient.",
+    "scoreExplanation": "Coverage is calculated based on skill requirement groups, not the number of individual skills. The match score does not represent the probability of being hired or actual skill proficiency.",
+    "scoreNote": "Note: If a job has only required requirements, the score is calculated as Required Coverage × 100%. If there are no scorable requirements, the result is shown as \"Unable to Score\" instead of applying the 80/20 formula.",
 
     "snapshotDetails": "Job / Profile Snapshots and Original Job Description",
     "historyDisclaimer": "Analysis history is read-only. Changes to the Job or Profile will not affect this result. Running a new analysis creates a new record.",
@@ -278,12 +280,23 @@
 
   "skillsgap": {
     "skills": "Missing Skills",
-    "requiredCount": "Required",
-    "preferredCount": "Preferred",
+    "requiredCount": "Jobs Requiring This Skill",
+    "preferredCount": "Jobs Preferring This Skill",
     "totalCount": "Total Jobs",
     "title": "Cross-Job Skill Gaps",
     "description": "Identify skill requirements that are repeatedly missing across different jobs.",
     "totalJobs": "Jobs Analysed",
-    "uniqueSkillGaps": "Unique Skill Gaps"
+    "uniqueSkillGaps": "Unique Skill Gaps",
+    "anyOne": "Any One"
+  },
+
+  "aiError": {
+    "503": "AI service is temporarily unavailable. Please try again later.",
+    "504": "AI request timed out. Please try again.",
+    "502": "AI returned invalid data. Please try extracting again.",
+    "429": "Too many requests. Please try again later.",
+    "400": "Invalid job description.",
+    "401": "Your session has expired. Please log in again.",
+    "default": "AI extraction failed. Please try again later."
   }
 }

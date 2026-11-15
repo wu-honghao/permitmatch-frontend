@@ -1,5 +1,5 @@
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd';
+import { Button, Col, Form, Input, InputNumber, Row, Select } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { educationLevels, permitSupport, requirementCategory, requirementOperator } from '../../../constant/jobForm';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
@@ -41,9 +41,7 @@ function JobForm({ initialValues, loading, onSubmit }: JobFormProps) {
     const onFinish: FormProps<JobFormValues>["onFinish"] = (
         values
     ) => {
-        const { checked, ...jobData } = values;
-
-        onSubmit(jobData);
+        onSubmit(values);
     };
 
     const onFinishFailed: FormProps['onFinishFailed'] = (errorInfo) => {
@@ -188,8 +186,8 @@ function JobForm({ initialValues, loading, onSubmit }: JobFormProps) {
                             >
                                 <Select options={requirementCategoryOption} onChange={() => {
                                     void form.validateFields([
-                                    ["requirements", name, "operator"],
-                                    ["requirements", name, "skills"]
+                                        ["requirements", name, "operator"],
+                                        ["requirements", name, "skills"]
                                     ]).catch(() => {});
                                 }}/>
                             </Form.Item>
@@ -249,11 +247,6 @@ function JobForm({ initialValues, loading, onSubmit }: JobFormProps) {
                 </>
             )}
         </Form.List>
-
-
-        <Form.Item name="checked" valuePropName="checked" label={null}>
-            <Checkbox>{t('jobForm.confirmation')}</Checkbox>
-        </Form.Item>
 
         <Form.Item label={null}>
             <Button type="primary" htmlType="submit" loading={loading}>

@@ -1,12 +1,12 @@
 
 import { Button, Input, message, Space } from "antd";
-import { postAPI } from "../../api/api";
-import type { JobFormValues } from "../../types/job";
+import { ApiError, postAPI, type ApiResponse } from "../../api/api";
+import type { Job, JobFormValues } from "../../types/job";
 import JobForm from "./Form/JobForm";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { cleanJobData } from "../../utils/jobFormatters";
-import { useState } from "react";
+import { mapFormToJobPayload } from "../../utils/jobFormatters";
+import { useRef, useState } from "react";
 
 function JobNew() {
   const { t } = useTranslation();
@@ -17,6 +17,8 @@ function JobNew() {
   const [rawDescription, setRawDescription] = useState("");
   const [draft, setDraft] = useState<JobFormValues | null>(null);
 
+  const submittingRef = useRef(false);
+
   const handleExtract = async () => {
     if (!rawDescription.trim()) {
       message.warning(t("jobs.enterDescription"));
@@ -26,39 +28,47 @@ function JobNew() {
     setExtracting(true);
 
     try {
-      const result = await postAPI({
+      const result = await postAPI<ApiResponse<JobFormValues>>({
         url: "/jobs/extract",
         data: { rawDescription },
         headersOption: { isAuthorization: true },
+        timeout: 25000,
       });
 
       const extracted = result.data;
 
-      // Convert null text fields to empty strings for JobForm.
-      setDraft({
-        ...extracted,
-        title: extracted.title ?? "",
-        company: extracted.company ?? undefined,
-        location: extracted.location ?? undefined,
-        rawDescription,
-      });
+      setDraft(extracted);
 
       message.success(t("jobs.extractSuccess"));
     } catch (error) {
-      console.error(error);
-      message.error(t("jobs.extractFailed"));
+        if (error instanceof ApiError) {
+          const supportedStatus = [400, 401, 429, 502, 503, 504];
+
+          const key = supportedStatus.includes(error.status)
+            ? String(error.status)
+            : "default";
+
+          message.error(t(`aiError.${key}`));
+        } else if (error instanceof Error && error.name === "TimeoutError") {
+          message.error(t("aiError.504"));
+        } else {
+          message.error(t("aiError.default"));
+        }
     } finally {
       setExtracting(false);
     }
   };
 
   const handleSubmit = async (values: JobFormValues) => {
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    
     try {
       setLoading(true);
 
-      const payload = cleanJobData(values);
+      const payload = mapFormToJobPayload(values);
 
-      const result = await postAPI({
+      const result = await postAPI<ApiResponse<Job>>({
         url: "/jobs",
         data: payload,
         headersOption: { isAuthorization: true },
@@ -70,6 +80,7 @@ function JobNew() {
       console.error(error);
       message.error(t("common.submit.fail"));
     } finally {
+      submittingRef.current = false;
       setLoading(false);
     }
   };

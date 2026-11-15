@@ -1,5 +1,5 @@
 import { useParams } from "react-router"
-import { getAPI } from "../../api/api"
+import { getAPI, type ApiResponse } from "../../api/api"
 import { useEffect, useState } from "react"
 import type { Analysis } from "../../types/analysis"
 import { Alert, Card, Empty, Flex, Spin, Tag } from "antd"
@@ -21,7 +21,7 @@ function JobDetailAnalyses(){
             setLoading(true);
             setError(false);
 
-            const result = await getAPI({ url: `/analyses/${id}`, headersOption: { isAuthorization: true } })
+            const result = await getAPI<ApiResponse<Analysis>>({ url: `/analyses/${id}`, headersOption: { isAuthorization: true } })
 
             setAnalyses(result.data)
         } catch {
@@ -109,6 +109,8 @@ function JobDetailAnalyses(){
             <h3>{t("jobDetailAnalyses.scoreDetails")}</h3>
             <p>{t("jobDetailAnalyses.scoreFormula")}</p>
             <p>{t("jobDetailAnalyses.scoreRules")}</p>
+            <p>{t("jobDetailAnalyses.scoreExplanation")}</p>
+            <p>{t("jobDetailAnalyses.scoreNote")}</p>
         </Card>
     </div>
 }

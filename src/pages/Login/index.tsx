@@ -10,7 +10,7 @@ import {
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { USERTOKEN } from "../../constant";
-import { postAPI } from "../../api/api";
+import { postAPI, type ApiResponse } from "../../api/api";
 import "./index.css";
 
 const { Title, Text } = Typography;
@@ -19,6 +19,10 @@ type Login = {
   email: string;
   password: string;
 };
+
+type LoginRes = {
+  token: string
+}
 
 function JobLogin() {
   const navigate = useNavigate();
@@ -32,7 +36,7 @@ function JobLogin() {
     setError(false);
 
     try {
-      const res = await postAPI({
+      const res = await postAPI<ApiResponse<LoginRes>>({
         url: "/auth/login",
         data: values,
       });
