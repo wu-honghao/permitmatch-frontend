@@ -1,5 +1,5 @@
 import { Alert, Empty, message, Spin } from "antd"
-import { getAPI, patchAPI } from "../../api/api"
+import { getAPI, patchAPI, type ApiResponse } from "../../api/api"
 import type { Job, JobFormValues, SkillRequirement } from "../../types/job"
 import JobForm from "./Form/JobForm"
 import { useTranslation } from "react-i18next"
@@ -58,7 +58,7 @@ function JobEdit () {
             setLoading(true);
             setError(false);
 
-            const { data: job } = await getAPI({
+            const { data: job } = await getAPI<ApiResponse<Job>>({
                 url: `/jobs/${id}`,
                 headersOption: { isAuthorization: true }
             });

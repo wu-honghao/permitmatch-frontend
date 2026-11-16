@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { clearUserData, saveUserData } from "../features/auth/authSlice"
 import { ApiError, getAPI, type ApiResponse } from "../api/api"
+import { Button } from "antd"
+import { useTranslation } from "react-i18next"
 
 type AuthMe = {
     id: string
@@ -12,10 +14,13 @@ type AuthMe = {
 
 function ProtectedRoute () {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null)
-
+    const [authError, setAuthError] = useState(false);
+    const { t } = useTranslation();
     const dispatch = useDispatch()
 
     const getUserInfo = async () => {
+        setAuthError(false);
+
         try {
             const res = await getAPI<ApiResponse<AuthMe>>({
                 url: "/auth/me",
@@ -38,13 +43,24 @@ function ProtectedRoute () {
             }
 
             console.error(e);
-            setIsAuthenticated(false)
+            setAuthError(true);
         }
     }
 
     useEffect(()=>{
         getUserInfo()
     },[])
+
+    if (authError) {
+        return (
+            <div>
+                <p>{t("common.loading.fail")}</p>
+                <Button onClick={getUserInfo}>
+                    {t("common.retry")}
+                </Button>
+            </div>
+        );
+    }
 
     if (isAuthenticated === null) {
         return <div>Loading...</div>

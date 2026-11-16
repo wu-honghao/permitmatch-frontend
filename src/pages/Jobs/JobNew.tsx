@@ -18,13 +18,16 @@ function JobNew() {
   const [draft, setDraft] = useState<JobFormValues | null>(null);
 
   const submittingRef = useRef(false);
+  const extractingRef = useRef(false);
 
   const handleExtract = async () => {
+    if(extractingRef.current) return
     if (!rawDescription.trim()) {
       message.warning(t("jobs.enterDescription"));
       return;
     }
 
+    extractingRef.current = true;
     setExtracting(true);
 
     try {
@@ -55,6 +58,7 @@ function JobNew() {
           message.error(t("aiError.default"));
         }
     } finally {
+      extractingRef.current = false
       setExtracting(false);
     }
   };
@@ -62,7 +66,7 @@ function JobNew() {
   const handleSubmit = async (values: JobFormValues) => {
     if (submittingRef.current) return;
     submittingRef.current = true;
-    
+
     try {
       setLoading(true);
 
@@ -128,7 +132,6 @@ function JobNew() {
           </p>
 
           <JobForm
-            key={rawDescription}
             initialValues={draft}
             onSubmit={handleSubmit}
             loading={loading}

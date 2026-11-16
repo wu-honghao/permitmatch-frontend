@@ -20,6 +20,7 @@
 
   "common": {
     "submit": "保存",
+    "retry": "重试",
     "submit.success": "保存成功",
     "submit.fail": "保存失败",
     "submit.empty": "未修改",
@@ -30,7 +31,7 @@
     "analyses.success": "分析已完成并保存；已更新最新分析",
     "analyses.fail": "分析失败",
     "pleaseinput": "请输入",
-
+    
     "educationLevel.high_school" : "高中",
     "educationLevel.diploma" : "大专",
     "educationLevel.bachelor" : "本科",

@@ -20,6 +20,7 @@
 
   "common": {
     "submit": "Save",
+    "retry": "Retry",
     "submit.success": "Save successfully",
     "submit.fail": "Failed to save",
     "submit.empty": "No Changes Made",
