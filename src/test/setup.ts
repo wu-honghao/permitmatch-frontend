@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
-import { afterEach, vi } from "vitest";
+import { afterEach } from "vitest";
 
 // Ant Design's responsive observer requires a stable matchMedia implementation.
 // Do NOT create it with vi.fn(): vi.resetAllMocks() removes mock implementations.
