@@ -20,7 +20,6 @@ const job = {
 };
 
 beforeEach(() => vi.resetAllMocks());
-afterEach(() => cleanup());
 
 describe('JobEdit', () => {
   it('loads and prefills the existing job', async () => {

@@ -8,7 +8,6 @@ import { renderWithProviders } from '../utils/renderWithProviders';
 const onSubmit = vi.fn(async (_values: JobFormValues): Promise<void> => {});
 
 beforeEach(() => onSubmit.mockClear());
-afterEach(() => cleanup());
 
 describe('JobForm — validated form behaviour', () => {
   it('F07: accepts text input', async () => {
