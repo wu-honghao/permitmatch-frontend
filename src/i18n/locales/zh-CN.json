@@ -118,7 +118,9 @@
     "extractSuccess": "提取成功，请核对岗位信息",
     "extractFailed": "提取失败，请稍后重试",
     "reviewExtracted": "请检查 AI 提取的信息，特别是技能要求与工作许可相关内容。",
-    "backToJobs": "返回我的岗位"
+    "backToJobs": "返回我的岗位",
+    "enterManually": "手动录入",
+    "backToImport": "返回岗位导入"
   },
 
   "jobDetail": {

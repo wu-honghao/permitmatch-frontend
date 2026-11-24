@@ -124,7 +124,9 @@
     "extractSuccess": "Extraction complete. Please review the details.",
     "extractFailed": "Extraction failed. Please try again.",
     "reviewExtracted": "Review the extracted details, especially skill requirements and employment permit information.",
-    "backToJobs": "Back to My Jobs"
+    "backToJobs": "Back to My Jobs",
+    "enterManually": "Enter Manually",
+    "backToImport": "Back to Import"
   },
 
   "jobDetail": {
